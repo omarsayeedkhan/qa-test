@@ -1,0 +1,143 @@
+{
+	"info": {
+		"name": "Weatherbit API",
+		"_postman_id": "0bb45488-ec0e-17e9-64e2-1692de23145f",
+		"description": "This collection is to create automated regression tests to get current Weather Data for multiple places in the world base on Latitude and Longitude and Postcode",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Weather API LAT LON",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fba30b34-0219-4faa-9d88-dcf02e61ad72",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Display country code for the given longitude\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"country_code\" , \"RU\");",
+							"});",
+							"",
+							"",
+							"",
+							"pm.test(\"Show the latitude\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"lat\" , \"90.12\");",
+							"});",
+							"",
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://api.weatherbit.io/v2.0/current?key=9d37284f5d294aad9770644c85274741&lat=90.123&lon=80.543",
+					"protocol": "http",
+					"host": [
+						"api",
+						"weatherbit",
+						"io"
+					],
+					"path": [
+						"v2.0",
+						"current"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "9d37284f5d294aad9770644c85274741",
+							"equals": true
+						},
+						{
+							"key": "lat",
+							"value": "90.123",
+							"equals": true
+						},
+						{
+							"key": "lon",
+							"value": "80.543",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Weather API Postcode",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "27685bc4-37f9-440d-99bb-4e22ed33c4fb",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Display Longitude for postcode 2150\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"lon\" , \"151.0067\");",
+							"});",
+							"",
+							"",
+							"",
+							"pm.test(\"DIsplay the country code for the given Postcode\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"country_code\" , \"AU\");",
+							"});",
+							"",
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://api.weatherbit.io/v2.0/current?key=9d37284f5d294aad9770644c85274741&postal_code=2150",
+					"protocol": "http",
+					"host": [
+						"api",
+						"weatherbit",
+						"io"
+					],
+					"path": [
+						"v2.0",
+						"current"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "9d37284f5d294aad9770644c85274741",
+							"equals": true
+						},
+						{
+							"key": "postal_code",
+							"value": "2150\n",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
